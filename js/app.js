@@ -54,7 +54,7 @@ const showDetails =(show) =>{
     <p class="card-text">ChipSet: ${show.mainFeatures.chipSet}</p>
     <p class="card-text">Memory: ${show.mainFeatures.memory}</p>
     <p class="card-text">Sensors: ${show.mainFeatures.sensors}</p>
-    <p class="card-text">ReleaseDate: ${show.releaseDate}</p>
+    <p class="card-text">ReleaseDate: ${show.releaseDate ? show.releaseDate : "No released date"}</p>
     <p class="card-text">WLAN: ${show.others.WLAN}</p>
     <p class="card-text">Bluetooth: ${show.others.Bluetooth}</p>
     <p class="card-text">GPS: ${show.others.GPS}</p>
