@@ -39,7 +39,7 @@ const details = (id)=> {
 };
 
 const showDetails =(show) =>{
-  console.log(show.mainFeatures);
+  // console.log(show.mainFeatures);
   document.getElementById("phoneDetails").innerHTML = "";
   const phoneDetail = document.getElementById('phoneDetails');
   const div = document.createElement('div');
@@ -53,8 +53,8 @@ const showDetails =(show) =>{
     <p class="card-text">DisplaySize: ${show.mainFeatures.displaySize}</p>
     <p class="card-text">ChipSet: ${show.mainFeatures.chipSet}</p>
     <p class="card-text">Memory: ${show.mainFeatures.memory}</p>
-    <p class="card-text">Sensors: </p>
-    <p class="card-text">ReleaseDate: ${show.releaseDate}}</p>
+    <p class="card-text">Sensors: ${show.mainFeatures.sensors}</p>
+    <p class="card-text">ReleaseDate: ${show.releaseDate}</p>
     <p class="card-text">WLAN: ${show.others.WLAN}</p>
     <p class="card-text">Bluetooth: ${show.others.Bluetooth}</p>
     <p class="card-text">GPS: ${show.others.GPS}</p>
