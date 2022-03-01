@@ -1,7 +1,10 @@
+// Search Input Field
 const btnSubmit = () =>{
     document.getElementById("searchResult").innerHTML = "";
     document.getElementById("phoneDetails").innerHTML = "";
+    const spinner = document.getElementById("spinner");
     const input = document.getElementById('inputField').value;
+    spinner.style.display = "block";
     const url =`https://openapi.programming-hero.com/api/phones?search=${input}`
     fetch(url)
     .then(res => res.json())
@@ -13,7 +16,13 @@ const btnSubmit = () =>{
 const showPhone = data =>{
     const searchResult = document.getElementById('searchResult');
     // console.log(data);
-
+    //Error Handler
+    if(data.length === 0){
+      const errorMessage = document.getElementById("error-message");
+    errorMessage.style.display = "flex";
+    spinner.style.display = "none";
+    document.getElementById("device-name").innerText = "Phone Not Found!";
+    }else{
     data.forEach(phones => {
         const div = document.createElement('div');
         div.classList.add('col')
@@ -28,7 +37,10 @@ const showPhone = data =>{
       </div>
         `
         searchResult.appendChild(div);
+        spinner.style.display = "none";
+        document.getElementById("error-message").style.display = "none";
     })
+  }
 };
 
 const details = (id)=> {
@@ -37,7 +49,7 @@ const details = (id)=> {
     .then(res => res.json())
     .then(data => showDetails(data.data));
 };
-
+// Show details part
 const showDetails =(show) =>{
   // console.log(show.mainFeatures);
   document.getElementById("phoneDetails").innerHTML = "";
@@ -47,20 +59,20 @@ const showDetails =(show) =>{
   <div class="card" style="width: 18rem;">
   <img src="${show.image}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">Name: ${show.name}</h5>
-    <p class="card-text">Brand: ${show.brand}</p>
-    <p class="card-text">Storage: ${show.mainFeatures.storage}</p>
-    <p class="card-text">DisplaySize: ${show.mainFeatures.displaySize}</p>
-    <p class="card-text">ChipSet: ${show.mainFeatures.chipSet}</p>
-    <p class="card-text">Memory: ${show.mainFeatures.memory}</p>
-    <p class="card-text">Sensors: ${show.mainFeatures.sensors}</p>
-    <p class="card-text">ReleaseDate: ${show.releaseDate ? show.releaseDate : "No released date"}</p>
-    <p class="card-text">WLAN: ${show.others.WLAN}</p>
-    <p class="card-text">Bluetooth: ${show.others.Bluetooth}</p>
-    <p class="card-text">GPS: ${show.others.GPS}</p>
-    <p class="card-text">NFC: ${show.others.NFC}</p>
-    <p class="card-text">Radio: ${show.others.Radio}</p>
-    <p class="card-text">USB: ${show.others.USB}</p>
+    <h5 class="card-title"><span class="fw-bold">Name:</span> ${show.name}</h5>
+    <p class="card-text"><span class="fw-bold">Brand:</span> ${show.brand}</p>
+    <p class="card-text"><span class="fw-bold">Storage:</span> ${show.mainFeatures.storage}</p>
+    <p class="card-text"><span class="fw-bold">DisplaySize:</span> ${show.mainFeatures.displaySize}</p>
+    <p class="card-text"><span class="fw-bold">ChipSet:</span> ${show.mainFeatures.chipSet}</p>
+    <p class="card-text"><span class="fw-bold">Memory:</span> ${show.mainFeatures.memory}</p>
+    <p class="card-text"><span class="fw-bold">Sensors:</span> ${show.mainFeatures.sensors}</p>
+    <p class="card-text"><span class="fw-bold">ReleaseDate:</span> ${show.releaseDate ? show.releaseDate : "No released date"}</p>
+    <p class="card-text"><span class="fw-bold">WLAN:</span> ${show.others.WLAN}</p>
+    <p class="card-text"><span class="fw-bold">Bluetooth:</span> ${show.others.Bluetooth}</p>
+    <p class="card-text"><span class="fw-bold">GPS:</span> ${show.others.GPS}</p>
+    <p class="card-text"><span class="fw-bold">NFC:</span> ${show.others.NFC}</p>
+    <p class="card-text"><span class="fw-bold">Radio:</span> ${show.others.Radio}</p>
+    <p class="card-text"><span class="fw-bold">USB:</span> ${show.others.USB}</p>
   </div>
 </div>
   
